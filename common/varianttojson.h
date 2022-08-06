@@ -9,4 +9,10 @@ static QString variantToJson(const QVariant &v, bool pretty)
     return QString::fromUtf8(jd.toJson(pretty ? QJsonDocument::Indented : QJsonDocument::Compact));
 }
 
+static QVariant jsonToVariant(const QString &s)
+{
+    QJsonDocument jd = QJsonDocument::fromJson(s.toUtf8());
+    return jd.toVariant();
+}
+
 #endif // VARIANTTOJSON_H

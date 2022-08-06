@@ -53,3 +53,11 @@ QVariant VariantSerializer::deserializeFromBinary(const QByteArray &x)
     in >> v;
     return v;
 }
+std::string VariantSerializer::serializeToStdString(const QVariant &x, bool verbose)
+{
+    return this->serializeToString(x, verbose).toStdString();
+}
+QVariant VariantSerializer::deserializeFromStdString(const std::string &x)
+{
+    return this->deserializeFromString(QString::fromStdString(x));
+}
