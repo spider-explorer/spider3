@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>archive-api-x86_64-static.dll</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,6 @@
+﻿<RCC>
+    <qresource prefix="/">
+        <file>esprima.js</file>
+        <file>babel-parser.mjs</file>
+    </qresource>
+</RCC>
