@@ -69,9 +69,9 @@ static QString prepareMain(QSplashScreen &splash)
         QMessageBox::information(nullptr, "確認", "本体のダウンロードが失敗しました");
     }
     QString installDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) +
-                         QString("/.spider-explorer2/.install/%1").arg(version);
+                         QString("/.spider-explorer3/.install/%1").arg(version);
     QString junctionDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) +
-                          QString("/.spider-explorer2/.install/current");
+                          QString("/.spider-explorer3/.install/current");
     qdebug_line();
     if (!QFileInfo(installDir).exists())
     {
