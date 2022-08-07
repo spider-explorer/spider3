@@ -6,6 +6,7 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
 {
     auto uhomeName = g_core().selectedRepoName();
     auto docsDir = g_core().env()["docs"];
+    auto repoDir = docsDir + "/.repo";
     QString uhomeDir = docsDir + "/.repo/" + uhomeName;
     QStringList repoList = this->getRepoNameList();
     if (uhomeName.isEmpty())
@@ -73,7 +74,8 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
         env.insert(QString("REPO_") + repo.replace(re, "_").toUpper(), QString(docsDir + "/.repo/" + repo).replace("/", "\\"));
     }
     env.insert("PATH", pathAdded + ";" + g_core().env()["path"]);
-    env.insert("REPO", uhomeName);
+    //env.insert("REPO", uhomeName);
+    env.insert("REPO", repoDir.replace("/", "\\"));
     env.insert("MSYS2", msys2Name);
     env.insert("WSLENV", wslenv.join(":"));
     m_proc->setWorkingDirectory(np(uhomeDir));
