@@ -70,7 +70,7 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
     foreach(auto repo, repoList)
     {
         QRegularExpression re("[^a-zA-Z0-9]");
-        env.insert(QString("REPO_") + repo.replace(re, "_").toUpper(), QString(docsDir + "\\" + repo).replace("/", "\\"));
+        env.insert(QString("REPO_") + repo.replace(re, "_").toUpper(), QString(docsDir + "/.repo/" + repo).replace("/", "\\"));
     }
     env.insert("PATH", pathAdded + ";" + g_core().env()["path"]);
     env.insert("REPO", uhomeName);
