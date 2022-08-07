@@ -1,10 +1,12 @@
 ﻿#include <winsock2.h>
 #include "spiderprocess.h"
 #include "windowsutils.h"
+#include "projectchecker.h"
 SpiderProcess::SpiderProcess(SpiderProcCallback callback)
 {
     auto uhomeName = g_core().selectedRepoName();
     QString uhomeDir = g_core().env()["docs"] + "/.repo/" + uhomeName;
+    QStringList repoList = this->getRepoNameList();
     if (uhomeName.isEmpty())
     {
         uhomeDir = g_core().env()["docs"] + "/.repo";
@@ -63,6 +65,7 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
     }
     settings.settings().endGroup();
     env.insert("HOME", np(uhomeDir));
+    env.insert("REPO_LIST", repoList.join(";"));
     env.insert("PATH", pathAdded + ";" + g_core().env()["path"]);
     env.insert("REPO", uhomeName);
     env.insert("MSYS2", msys2Name);
@@ -104,4 +107,30 @@ bool SpiderProcess::waitForFinished(int msecs)
 void SpiderProcess::startDetached()
 {
     m_proc->startDetached();
+}
+QStringList SpiderProcess::getRepoNameList()
+{
+    QDir::Filters filters = QDir::Dirs;
+    QDirIterator::IteratorFlags flags = QDirIterator::NoIteratorFlags;
+    QDirIterator it0(g_core().env()["docs"] + "/.repo", filters, flags);
+    QStringList realRepoList;
+    while (it0.hasNext())
+    {
+        QString dir = it0.next();
+        QString fileName = QFileInfo(dir).fileName();
+        if (dir.endsWith("/.") || dir.endsWith("/.."))
+            continue;
+#if 0x0
+        if (!isVaridFolderName(fileName))
+            continue;
+#endif
+        ProjectChecker ck(dir);
+        if (!ck.isVisible())
+            continue;
+        if (!ck.isGitDir())
+            continue;
+        realRepoList.append(QFileInfo(dir).fileName());
+    }
+    // qDebug() << realRepoList;
+    return realRepoList;
 }

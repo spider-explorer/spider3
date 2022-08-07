@@ -1,15 +1,15 @@
 {
-    "version": "2022.08.07.01.14.01",
+    "version": "2022.08.08.03.42.58",
     "description": "",
     "homepage": "",
     "license": "MIT",
     "depends": [
     ],
     "url": [
-        "https://github.com/spider-explorer/spider3/releases/download/v2022.08.07.01.14.01/spider-v2022.08.07.01.14.01.zip"
+        "https://github.com/spider-explorer/spider3/releases/download/v2022.08.08.03.42.58/spider-v2022.08.08.03.42.58.zip"
     ],
     "hash": [
-        "59cbd3f6e03ccd92d95ee590fea628b31f7c2c294233b6ef1c4ed42a64836cdd"
+        "d4165cb124037b4af027ff775c8315cf1665a1fd25bd24d24d10404e4fcbdd91"
     ],
     "bin": [
         [

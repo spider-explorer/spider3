@@ -1,4 +1,4 @@
-#ifndef SPIDERPROCESS_H
+﻿#ifndef SPIDERPROCESS_H
 #define SPIDERPROCESS_H
 #include "common.h"
 #include "spidercore.h"
@@ -24,5 +24,7 @@ public:
     void start();
     bool waitForFinished(int msecs = 30000);
     void startDetached();
+protected:
+    QStringList getRepoNameList();
 };
 #endif // SPIDERPROCESS_H
