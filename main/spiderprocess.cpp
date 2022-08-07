@@ -5,12 +5,13 @@
 SpiderProcess::SpiderProcess(SpiderProcCallback callback)
 {
     auto uhomeName = g_core().selectedRepoName();
-    QString uhomeDir = g_core().env()["docs"] + "/.repo/" + uhomeName;
+    auto docsDir = g_core().env()["docs"];
+    QString uhomeDir = docsDir + "/.repo/" + uhomeName;
     QStringList repoList = this->getRepoNameList();
     if (uhomeName.isEmpty())
     {
-        uhomeDir = g_core().env()["docs"] + "/.repo";
-        QDir docsDir = g_core().env()["docs"];
+        uhomeDir = docsDir + "/.repo";
+        QDir docsDir = docsDir;
         docsDir.mkpath(".repo");
     }
     QString cmd2 = uhomeDir + "/cmd";
@@ -65,7 +66,12 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
     }
     settings.settings().endGroup();
     env.insert("HOME", np(uhomeDir));
-    env.insert("REPO_LIST", repoList.join(";"));
+    //env.insert("REPO_LIST", repoList.join(";"));
+    foreach(auto repo, repoList)
+    {
+        QRegularExpression re("[^a-zA-Z0-9]");
+        env.insert(QString("REPO_") + repo.replace(re, "_").toUpper(), docsDir + "\\" + repo);
+    }
     env.insert("PATH", pathAdded + ";" + g_core().env()["path"]);
     env.insert("REPO", uhomeName);
     env.insert("MSYS2", msys2Name);
