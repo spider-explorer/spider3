@@ -43,7 +43,7 @@ SpiderProcess::SpiderProcess(SpiderProcCallback callback)
         env.insert("QT_MSYS2_DIR", msys2Dir);
         env.insert("QT_MSYS2_ARCH", "amd64");
         env.insert("QT_MSYS2_STATIC", "true");
-        env.insert("GOROOT", np(msys2Dir + "/mingw64/lib/go"));
+        //env.insert("GOROOT", np(msys2Dir + "/mingw64/lib/go"));
     }
 #if 0x0
     QStringList c_include_path = env.value("C_INCLUDE_PATH").split(":");
