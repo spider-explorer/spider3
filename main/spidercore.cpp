@@ -211,7 +211,8 @@ SpiderCore::SpiderCore(QSplashScreen &splash, const QString &mainDllPath) : m_sp
 #endif
 #endif
         //
-        QUrl softwareUrl("https://gitlab.com/spider-explorer/spider-software/-/raw/main/spider-software.json");
+        //QUrl softwareUrl("https://gitlab.com/spider-explorer/spider-software/-/raw/main/spider-software.json");
+        QUrl softwareUrl("https://raw.githubusercontent.com/spider-explorer/spider-programs/main/spider-programs.json");
         JsonSettings softwareSettings(softwareUrl);
         qdebug_line1("SpiderCore::SpiderCore(5)");
         QStringList appList = softwareSettings.value("software").toMap().keys();
