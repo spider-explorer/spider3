@@ -14,7 +14,8 @@ if "%ext%"==".bat" (
   @echo off
 ) else if "%ext%"==".sh" (
   @echo on
-  busybox bash -c "%file:\=/%"
+  rem busybox bash -c "%file:\=/%"
+  busybox bash "%file%"
   @echo off
 )
 del /f %file%
